@@ -10,13 +10,9 @@ import { loadGoogleFont } from "../util/font"
 export let loader: LoaderFunction = async ({ request }) => {
   console.log("begin loader")
 
-  // @ts-expect-error
-  const yogaWasm = YOGA_WASM
-  console.log("YOGA_WASM", typeof yogaWasm, yogaWasm)
-
   // Init yoga wasm
   try {
-    const yoga = await initYoga(yogaWasm)
+    const yoga = await initYoga(YOGA_WASM)
     await init(yoga)
     console.log("initialized yoga")
   } catch (err) {
@@ -25,9 +21,7 @@ export let loader: LoaderFunction = async ({ request }) => {
 
   // Init resvg wasm
   try {
-    // @ts-expect-error
-    const resvgWasm = RESVG_WASM
-    await initWasm(resvgWasm as WebAssembly.Module)
+    await initWasm(RESVG_WASM)
     console.log("initialized resvg")
   } catch (err) {
     console.error(err)
