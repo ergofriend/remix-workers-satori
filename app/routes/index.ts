@@ -34,7 +34,7 @@ export let loader: LoaderFunction = async ({ request }) => {
       {
         name: "Bitter",
         data: await font,
-        weight: 500,
+        weight: 600,
         style: "normal",
       },
     ],
