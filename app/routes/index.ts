@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/cloudflare";
+import type { LoaderFunction } from "@remix-run/cloudflare"
 
 // @ts-expect-error satori/wasm is not typed
 import satori, { init } from "satori/wasm"
@@ -11,10 +11,17 @@ export let loader: LoaderFunction = async ({ request }) => {
   console.log("begin loader")
 
   // @ts-expect-error
-  const yoga = await initYoga(YOGA_WASM)
-  await init(yoga)
-  console.log("initialized yoga")
+  const yogaWasm = YOGA_WASM
+  console.log("YOGA_WASM", typeof yogaWasm, yogaWasm)
 
+  // Init yoga wasm
+  try {
+    const yoga = await initYoga(yogaWasm)
+    await init(yoga)
+    console.log("initialized yoga")
+  } catch (err) {
+    console.error(err)
+  }
 
   const params = new URLSearchParams(new URL(request.url).search)
   const title = params.get("title") || "no title"
