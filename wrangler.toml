@@ -1,6 +1,4 @@
-name = "remix-cloudflare-workers"
-
-workers_dev = true
+name = "remix-workers-satori"
 main = "./build/index.js"
 # https://developers.cloudflare.com/workers/platform/compatibility-dates
 compatibility_date = "2022-04-05"
@@ -10,6 +8,7 @@ compatibility_date = "2022-04-05"
 
 [build]
   command = "yarn run build"
+  watch_dir = "app"
 
 [wasm_modules]
 YOGA_WASM = "node_modules/yoga-wasm-web/dist/yoga.wasm"

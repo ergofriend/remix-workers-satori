@@ -2,11 +2,8 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
     "deploy": "wrangler publish",
-    "dev:remix": "remix watch",
-    "dev:wrangler": "wrangler dev",
-    "dev": "remix build && run-p \"dev:*\""
+    "dev": "wrangler dev"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^1.7.2",
