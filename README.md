@@ -12,6 +12,13 @@ YOGA_WASM = "node_modules/yoga-wasm-web/dist/yoga.wasm"
 RESVG_WASM = "node_modules/@resvg/resvg-wasm/index_bg.wasm"
 ```
 
+## remix.env.d.ts
+
+```ts
+declare const YOGA_WASM: WebAssembly.Module
+declare const RESVG_WASM: WebAssembly.Module
+```
+
 ## related
 
 - [vercel/satori: Enlightened library to convert HTML and CSS to SVG](https://github.com/vercel/satori)
