@@ -1,37 +1,10 @@
-# Welcome to Remix!
+# Remix (Cloudflare Workers) + satori
 
-- [Remix Docs](https://remix.run/docs)
+Remix can't bundle `*.wasm` files, so we need to use worker's `wasm_modules`.
 
-## Development
+see also [\[Feature\]: Support Wasm loader in ESBuild · Discussion #2752 · remix-run/remix](https://github.com/remix-run/remix/discussions/2752)
 
-You will be running two processes during development:
+## related
 
-- The Miniflare server (miniflare is a local environment for Cloudflare Workers)
-- The Remix development server
-
-Both are started with one command:
-
-```sh
-npm run dev
-```
-
-Open up [http://127.0.0.1:8787](http://127.0.0.1:8787) and you should be ready to go!
-
-If you want to check the production build, you can stop the dev server and run following commands:
-
-```sh
-npm run build
-npm start
-```
-
-Then refresh the same URL in your browser (no live reload for production builds).
-
-## Deployment
-
-If you don't already have an account, then [create a cloudflare account here](https://dash.cloudflare.com/sign-up) and after verifying your email address with Cloudflare, go to your dashboard and set up your free custom Cloudflare Workers subdomain.
-
-Once that's done, you should be able to deploy your app:
-
-```sh
-npm run deploy
-```
+- [vercel/satori: Enlightened library to convert HTML and CSS to SVG](https://github.com/vercel/satori)
+- [kvnang/workers-og: An `og:image` (social card) generator that is fast, browser-less (no Puppeteer), and capable of running on the edge. This package is designed to be used with Cloudflare Workers (but may be used elsewhere), with the simple API inspired by `@vercel/og`. https://github.com/kvnang/workers-og]
