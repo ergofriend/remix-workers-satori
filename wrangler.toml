@@ -13,3 +13,4 @@ compatibility_date = "2022-04-05"
 
 [wasm_modules]
 YOGA_WASM = "node_modules/yoga-wasm-web/dist/yoga.wasm"
+RESVG_WASM = "node_modules/@resvg/resvg-wasm/index_bg.wasm"

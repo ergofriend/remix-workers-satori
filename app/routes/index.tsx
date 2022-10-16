@@ -1,5 +1,5 @@
 import type { LoaderFunction } from "@remix-run/cloudflare"
-
+import { Resvg, initWasm } from "@resvg/resvg-wasm"
 // @ts-expect-error satori/wasm is not typed
 import satori, { init } from "satori/wasm"
 // @ts-expect-error yoga-wasm-web is not typed
@@ -23,11 +23,21 @@ export let loader: LoaderFunction = async ({ request }) => {
     console.error(err)
   }
 
+  // Init resvg wasm
+  try {
+    // @ts-expect-error
+    const resvgWasm = RESVG_WASM
+    await initWasm(resvgWasm as WebAssembly.Module)
+    console.log("initialized resvg")
+  } catch (err) {
+    console.error(err)
+  }
+
   const params = new URLSearchParams(new URL(request.url).search)
   const title = params.get("title") || "no title"
   console.log("params title:", title)
 
-  const html = <div style={{ fontFamily: 'Bitter' }}>{title}</div>
+  const html = <div style={{ fontFamily: "Bitter" }}>{title}</div>
 
   const font = await loadGoogleFont({ family: "Bitter", weight: 600 })
   console.log("Bitter font data", font)
@@ -45,11 +55,25 @@ export let loader: LoaderFunction = async ({ request }) => {
     ],
     debug: true,
   })
-  console.log("generated svg:", svg)
+  console.log("satori generated svg")
 
-  return new Response(svg, {
+  // convert the SVG into a PNG
+  const opts = {
+    fitTo: {
+      mode: "width" as const,
+      value: 1200,
+    },
+    font: {
+      loadSystemFonts: false, // It will be faster to disable loading system fonts.
+    },
+  }
+  const resvg = new Resvg(svg, opts)
+  const pngData = resvg.render()
+  const pngBuffer = pngData.asPng()
+
+  return new Response(pngBuffer, {
     headers: {
-      "Content-Type": "img/svg+xml",
+      "Content-Type": "image/png",
     },
   })
 }

@@ -1479,6 +1479,11 @@
     set-cookie-parser "^2.4.8"
     source-map "^0.7.3"
 
+"@resvg/resvg-wasm@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@resvg/resvg-wasm/-/resvg-wasm-2.1.0.tgz#480a4f2bd46656ddd111bc073491ddeb216276f9"
+  integrity sha512-ov/c2NfqhCreBc9ieuELMgHfOrkCzaymvgGeBDkir0GxINs8CLVbDVqtBWfhgcI3558t1j8WeFDAEtsmI/UDyA==
+
 "@rollup/pluginutils@^4.0.0":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
