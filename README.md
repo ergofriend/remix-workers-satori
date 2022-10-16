@@ -7,4 +7,4 @@ see also [\[Feature\]: Support Wasm loader in ESBuild · Discussion #2752 · rem
 ## related
 
 - [vercel/satori: Enlightened library to convert HTML and CSS to SVG](https://github.com/vercel/satori)
-- [kvnang/workers-og: An `og:image` (social card) generator that is fast, browser-less (no Puppeteer), and capable of running on the edge. This package is designed to be used with Cloudflare Workers (but may be used elsewhere), with the simple API inspired by `@vercel/og`. https://github.com/kvnang/workers-og]
+- [kvnang/workers-og: An `og:image` (social card) generator that is fast, browser-less (no Puppeteer), and capable of running on the edge. This package is designed to be used with Cloudflare Workers (but may be used elsewhere), with the simple API inspired by `@vercel/og`.](https://github.com/kvnang/workers-og)
