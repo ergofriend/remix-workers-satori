@@ -2,6 +2,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
+    "build": "remix build",
     "deploy": "wrangler publish",
     "dev": "wrangler dev"
   },
