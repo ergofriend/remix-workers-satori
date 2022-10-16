@@ -27,9 +27,7 @@ export let loader: LoaderFunction = async ({ request }) => {
   const title = params.get("title") || "no title"
   console.log("params title:", title)
 
-  const html = `
-    <div style={{ fontFamily: 'Bitter' }}>${title}</div>,
-  `
+  const html = <div style={{ fontFamily: 'Bitter' }}>{title}</div>
 
   const font = await loadGoogleFont({ family: "Bitter", weight: 600 })
   console.log("Bitter font data", font)
