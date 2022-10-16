@@ -11,7 +11,7 @@ export let loader: LoaderFunction = async ({ request }) => {
   console.log("begin loader")
 
   // @ts-expect-error
-  const yoga = await initYoga(MODULE1)
+  const yoga = await initYoga(YOGA_WASM)
   await init(yoga)
   console.log("initialized yoga")
 

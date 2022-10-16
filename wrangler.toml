@@ -12,4 +12,4 @@ compatibility_date = "2022-04-05"
   command = "yarn run build"
 
 [wasm_modules]
-MODULE1 = "node_modules/yoga-wasm-web/dist/yoga.wasm"
+YOGA_WASM = "node_modules/yoga-wasm-web/dist/yoga.wasm"
