@@ -1,5 +1,7 @@
 # Remix (Cloudflare Workers) + satori
 
+https://remix-workers-satori.ergofriend.workers.dev
+
 Remix can't bundle `*.wasm` files, so we need to use worker's `wasm_modules`.
 
 see also [\[Feature\]: Support Wasm loader in ESBuild · Discussion #2752 · remix-run/remix](https://github.com/remix-run/remix/discussions/2752)
