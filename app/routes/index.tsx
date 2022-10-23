@@ -1,73 +1,47 @@
-import type { LoaderFunction } from "@remix-run/cloudflare"
-import { Resvg, initWasm } from "@resvg/resvg-wasm"
-// @ts-expect-error satori/wasm is not typed
-import satori, { init } from "satori/wasm"
-// @ts-expect-error yoga-wasm-web is not typed
-import initYoga from "yoga-wasm-web"
+import type { ChangeEvent } from "react"
+import { useCallback } from "react"
+import { useState } from "react"
+import { useDebounce } from "usehooks-ts"
 
-import { loadGoogleFont } from "../util/font"
+import { Sample } from "~/components/Sample"
 
-export let loader: LoaderFunction = async ({ request }) => {
-  console.log("begin loader")
+export default function Page() {
+  const [title, setTitle] = useState("Workers Satori with Remix!")
+  const debouncedValue = useDebounce<string>(title, 500)
 
-  // Init yoga wasm
-  try {
-    const yoga = await initYoga(YOGA_WASM)
-    await init(yoga)
-    console.log("initialized yoga")
-  } catch (err) {
-    console.error(err)
+  const openImage = useCallback(
+    () =>
+      window
+        .open?.(`http://0.0.0.0:8787/og?title=${debouncedValue}`, "_blank")
+        ?.focus(),
+    [debouncedValue]
+  )
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value)
   }
 
-  // Init resvg wasm
-  try {
-    await initWasm(RESVG_WASM)
-    console.log("initialized resvg")
-  } catch (err) {
-    console.error(err)
-  }
-
-  const params = new URLSearchParams(new URL(request.url).search)
-  const title = params.get("title") || "no title"
-  console.log("params title:", title)
-
-  const html = <div style={{ fontFamily: "Bitter" }}>{title}</div>
-
-  const font = await loadGoogleFont({ family: "Bitter", weight: 600 })
-  console.log("Bitter font data", font)
-
-  const svg = await satori(html, {
-    width: 1200,
-    height: 630,
-    fonts: [
-      {
-        name: "Bitter",
-        data: await font,
-        weight: 600,
-        style: "normal",
-      },
-    ],
-    debug: true,
-  })
-  console.log("satori generated svg")
-
-  // convert the SVG into a PNG
-  const opts = {
-    fitTo: {
-      mode: "width" as const,
-      value: 1200,
-    },
-    font: {
-      loadSystemFonts: false, // It will be faster to disable loading system fonts.
-    },
-  }
-  const resvg = new Resvg(svg, opts)
-  const pngData = resvg.render()
-  const pngBuffer = pngData.asPng()
-
-  return new Response(pngBuffer, {
-    headers: {
-      "Content-Type": "image/png",
-    },
-  })
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        padding: "2rem",
+        flexDirection: "column",
+      }}
+    >
+      <div
+        style={{ transform: "scale(0.5)", cursor: "pointer" }}
+        onClick={openImage}
+      >
+        <Sample title={debouncedValue} />
+      </div>
+      <input
+        type="text"
+        value={title}
+        onChange={handleChange}
+        style={{ width: "100%", padding: "0 1rem" }}
+      />
+    </div>
+  )
 }
