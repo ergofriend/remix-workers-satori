@@ -12,7 +12,7 @@ export default function Page() {
   const openImage = useCallback(
     () =>
       window
-        .open?.(`http://0.0.0.0:8787/og?title=${debouncedValue}`, "_blank")
+        .open?.(`${window.location.href}og?title=${debouncedValue}`, "_blank")
         ?.focus(),
     [debouncedValue]
   )
